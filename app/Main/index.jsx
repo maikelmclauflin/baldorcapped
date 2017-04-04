@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider, { Range } from 'rc-slider';
 import { helpers } from '../helpers/index.jsx';
+import LineChart from '../LineChart/index.jsx';
+
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const TooltipRange = createSliderWithTooltip(Slider.Range);
 
@@ -9,20 +11,25 @@ class Main extends React.Component {
         super(props);
         this.state = {
             years: [2000, 2008],
-            cap: 5
+            cap: 5,
+            minYear: 1996,
+            maxYear: 2016,
+            data: []
         };
     }
     componentWillMount() {
-        helpers.getStocks().then(function (data) {
+        helpers.getStocks().then((data) => {
             const min = new Date('1997-01-01');
             return helpers.filterStocks(data, min);
-        }).then(function (subset) {
-            // console.log(subset);
+        }).then((subset) => {
+            this.setState({
+                data: subset
+            });
         });
     }
-    updateYear(e) {
+    updateYear(years) {
         this.setState({
-            years: e
+            years: years
         });
     }
     updateCap(cap) {
@@ -31,6 +38,7 @@ class Main extends React.Component {
         });
     }
     render() {
+        console.log(this.state.data);
     	return (
     	<div>
             <Slider
@@ -39,12 +47,17 @@ class Main extends React.Component {
                 value={this.state.cap}
                 onChange={(e) => this.updateCap(e)}/>
     		<TooltipRange
-                min={1996}
-                max={2016}
-                pushable={true}
+                min={this.state.minYear}
+                max={this.state.maxYear}
                 allowCross={false}
                 value={this.state.years}
                 onChange={(e) => this.updateYear(e)}/>
+            <LineChart
+                redraw
+                data={{
+                    type: 'line',
+                    datasets: this.state.data
+                }} />
     	</div>);
     }
 }
