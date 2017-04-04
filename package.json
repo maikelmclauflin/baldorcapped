@@ -9,6 +9,8 @@
   "author": "Michael McLaughlin <michael@gospecless.com> (https://gospecless.com)",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.0",
+    "get-stock": "^1.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
