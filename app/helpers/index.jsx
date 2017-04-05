@@ -35,8 +35,9 @@ const helpers = {
             let rise, delta, previous, previousPrice, newitem,
                 price = item.price;
             if (memo.length) {
-                previous = memo[memo.length - 1];
+                previous = data[index - 1];
                 previousPrice = previous.price;
+                console.log(previous, item);
                 delta = item.price - previousPrice;
                 if (delta > 0) {
                     // it went up

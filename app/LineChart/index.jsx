@@ -65,6 +65,7 @@ class LineChart extends React.Component {
                 viewBox={[-10, -10, width + 20, height + 20].join(' ')} >
                 <g>
                 { component.line('black', component.props.snpdata) }
+                { component.line('blue', component.props.capdata) }
                 </g>
             </svg>
        </div>);
