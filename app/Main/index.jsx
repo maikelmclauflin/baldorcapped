@@ -2,6 +2,8 @@
 // should the lines be curved
 // who is this being created for / what is the user's needs
 // are 1 year blocks / intervals ok
+// is a loading state necessary while data is being fetched
+// where should data come from? i found something could work
 import React from 'react';
 import Slider, { Range } from 'rc-slider';
 import { helpers } from '../helpers/index.jsx';
