@@ -36,7 +36,7 @@ class LineChart extends React.Component {
         return this.state.min === Infinity ? 100 : this.state.min;
     }
     width() {
-        return window.innerWidth;
+        return window.innerWidth * 0.9;
     }
     height() {
         return 250;

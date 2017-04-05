@@ -1,3 +1,7 @@
+// should the state persist on page reloads
+// should the lines be curved
+// who is this being created for / what is the user's needs
+// are 1 year blocks / intervals ok
 import React from 'react';
 import Slider, { Range } from 'rc-slider';
 import { helpers } from '../helpers/index.jsx';
@@ -77,11 +81,15 @@ class Main extends React.Component {
                     vertical={true}
                     onChange={(e) => this.updateCap(e)}/>
                 <TooltipRange
+                    className="year-range"
                     min={this.state.minYear}
                     max={this.state.maxYear}
                     allowCross={false}
                     value={this.state.years}
                     onChange={(e) => this.updateYear(e)}/>
+            </div>
+            <div
+                className="container">
             </div>
     	</div>);
     }

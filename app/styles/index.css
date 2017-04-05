@@ -22,6 +22,11 @@ body {
 
 svg g {
     transform-origin: 50%;
+    width: 90%;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
 }
 .container {
     position: relative;
@@ -34,7 +39,13 @@ svg g {
     margin: 0 auto;
 }
 .cap-slider {
-    height: 250px;
+    height: 230px;
     position: absolute;
     top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+.year-range {
+    width: 90%;
+    margin: 0 auto;
 }

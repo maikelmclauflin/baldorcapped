@@ -8,11 +8,15 @@ class Line extends React.Component {
             strokeWidth="3"
             points={path}/>
     }
+    x(point, index) {
+        return (index / (this.props.data.length - 1)) * this.props.width;
+    }
+    y(point) {
+        return -((((point.price - this.props.min) / (this.props.max - this.props.min)) * this.props.height) - this.props.height);
+    }
     computePath() {
         return this.props.data.map((point, index, list) => {
-            let y = -((((point.price - this.props.min) / (this.props.max - this.props.min)) * this.props.height) - this.props.height);
-            let x = (index / (list.length - 1)) * this.props.width;
-            return [x, y].join(',');
+            return [this.x(point, index), this.y(point)].join(',');
         }).join(' ');
     }
 }
