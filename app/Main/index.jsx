@@ -4,7 +4,8 @@ import { helpers } from '../helpers/index.jsx';
 import LineChart from '../LineChart/index.jsx';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const TooltipRange = createSliderWithTooltip(Slider.Range);
+const TooltipSlider = createSliderWithTooltip(Slider);
+const TooltipRange = createSliderWithTooltip(Range);
 
 class Main extends React.Component {
     constructor(props) {
@@ -56,24 +57,32 @@ class Main extends React.Component {
     }
     render() {
         const data = this.state.data;
-        const subset = this.subsetData(data);
-        const capped = helpers.generateCappedPoints(subset, this.state.cap);
+        const snpData = this.subsetData(data);
+        const cap = this.state.cap / 100;
+        const capData = helpers.generateCappedPoints(snpData, cap);
     	return (
-    	<div>
-            <Slider
-                min={1}
-                max={20}
-                value={this.state.cap}
-                onChange={(e) => this.updateCap(e)}/>
-    		<TooltipRange
-                min={this.state.minYear}
-                max={this.state.maxYear}
-                allowCross={false}
-                value={this.state.years}
-                onChange={(e) => this.updateYear(e)}/>
-            <LineChart
-                snpdata={subset}
-                capdata={capped} />
+    	<div
+            className="fluid-container">
+            <h1>Bald or Capped</h1>
+            <div
+                className="container">
+                <LineChart
+                    snpdata={snpData}
+                    capdata={capData} />
+                <TooltipSlider
+                    className="cap-slider"
+                    min={1}
+                    max={20}
+                    value={this.state.cap}
+                    vertical={true}
+                    onChange={(e) => this.updateCap(e)}/>
+                <TooltipRange
+                    min={this.state.minYear}
+                    max={this.state.maxYear}
+                    allowCross={false}
+                    value={this.state.years}
+                    onChange={(e) => this.updateYear(e)}/>
+            </div>
     	</div>);
     }
 }

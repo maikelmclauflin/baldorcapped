@@ -32,13 +32,13 @@ const helpers = {
     generateCappedPoints(data, cap) {
         return data.reduce(function (memo, item, index) {
             const year = item.year;
-            let rise, delta, previous, previousPrice, newitem,
+            let rise, delta, previous, previousPrice, previousCapPrice, newitem,
                 price = item.price;
             if (memo.length) {
                 previous = data[index - 1];
                 previousPrice = previous.price;
-                console.log(previous, item);
                 delta = item.price - previousPrice;
+                previousCapPrice = memo[index - 1].price;
                 if (delta > 0) {
                     // it went up
                     rise = delta / previousPrice;
@@ -47,10 +47,10 @@ const helpers = {
                         rise = cap;
                     }
                     // apply to the current price
-                    price = (rise + 1) * previousPrice;
+                    price = (rise + 1) * previousCapPrice;
                 } else {
                     // it went down
-                    price = previousPrice;
+                    price = previousCapPrice;
                 }
                 newitem = {
                     year: year,

@@ -23,3 +23,18 @@ body {
 svg g {
     transform-origin: 50%;
 }
+.container {
+    position: relative;
+}
+.fluid-container {
+    max-width: 1200px;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+.cap-slider {
+    height: 250px;
+    position: absolute;
+    top: 0;
+}
