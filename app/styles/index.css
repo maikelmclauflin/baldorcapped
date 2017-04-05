@@ -11,3 +11,15 @@ body {
 #app {
     min-height: 100%;
 }
+.chart-container {
+    height: 250px;
+    width: 100%;
+}
+.chart-container svg {
+    height: 100%;
+    width: 100%;
+}
+
+svg g {
+    transform-origin: 50%;
+}

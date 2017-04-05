@@ -20,10 +20,11 @@ class Main extends React.Component {
     componentWillMount() {
         helpers.getStocks().then((data) => {
             const min = new Date('1997-01-01');
-            return helpers.filterStocks(data, min);
+            return helpers.filterStocks(data, min.toISOString());
         }).then((subset) => {
+            const transformed = helpers.transformStocks(subset);
             this.setState({
-                data: subset
+                data: transformed
             });
         });
     }
@@ -37,8 +38,22 @@ class Main extends React.Component {
             cap: cap
         });
     }
+    minYear() {
+        return this.state.years[0];
+    }
+    maxYear() {
+        return this.state.years[1];
+    }
+    subsetData() {
+        const min = this.minYear();
+        const max = this.maxYear();
+        return this.state.data.filter(function (point) {
+            const year = point.year;
+            return year >= min && year <= max;
+        });
+    }
     render() {
-        console.log(this.state.data);
+        const data = this.state.data;
     	return (
     	<div>
             <Slider
@@ -53,11 +68,7 @@ class Main extends React.Component {
                 value={this.state.years}
                 onChange={(e) => this.updateYear(e)}/>
             <LineChart
-                redraw
-                data={{
-                    type: 'line',
-                    datasets: this.state.data
-                }} />
+                data={this.subsetData(data)} />
     	</div>);
     }
 }

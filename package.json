@@ -1,31 +1,30 @@
 {
-  "name": "interview",
-  "version": "1.0.0",
-  "description": "",
-  "main": "webkit.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Michael McLaughlin <michael@gospecless.com> (https://gospecless.com)",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^0.16.0",
-    "chart.js": "^1.1.1",
-    "get-stock": "^1.0.3",
-    "react": "^0.14.3",
-    "react-chartjs": "^0.8.0",
-    "react-dom": "^0.14.3",
-    "react-simple-tooltip": "^1.0.5"
-  },
-  "devDependencies": {
-    "babel-core": "^6.3.13",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.3.13",
-    "css-loader": "^0.28.0",
-    "rc-slider": "^6.3.1",
-    "react-svg-line-chart": "^1.0.3",
-    "style-loader": "^0.16.1",
-    "webpack": "^1.13.1"
-  }
+    "name": "interview",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "webpack -w"
+    },
+    "author": "Michael McLaughlin <michael@gospecless.com> (https://gospecless.com)",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.16.0",
+        "get-stock": "^1.0.3",
+        "react": "^0.14.3",
+        "react-dom": "^0.14.3",
+        "react-simple-tooltip": "^1.0.5"
+    },
+    "devDependencies": {
+        "babel-core": "^6.3.13",
+        "babel-loader": "^6.2.0",
+        "babel-preset-es2015": "^6.24.0",
+        "babel-preset-react": "^6.3.13",
+        "css-loader": "^0.28.0",
+        "rc-slider": "^6.3.1",
+        "react-svg-line-chart": "^1.0.3",
+        "style-loader": "^0.16.1",
+        "webpack": "^1.13.1"
+    }
 }
