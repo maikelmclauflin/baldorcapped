@@ -18,10 +18,7 @@ const helpers = {
             const current = new Date(item.Date);
             const iso = current.toISOString();
             const match = iso.match(/-01-01T/igm);
-            if (match && match.length) {
-                //
-            }
-    		return match && match.length && current >= min;
+    		return match && match.length && iso >= min;
     	});
     },
     transformStocks(list) {
@@ -31,6 +28,42 @@ const helpers = {
                 year: +((new Date(item.Date)).toISOString().split('-')[0])
             };
         });
+    },
+    generateCappedPoints(data, cap) {
+        return data.reduce(function (memo, item, index) {
+            const year = item.year;
+            let rise, delta, previous, previousPrice, newitem,
+                price = item.price;
+            if (memo.length) {
+                previous = memo[memo.length - 1];
+                previousPrice = previous.price;
+                delta = item.price - previousPrice;
+                if (delta > 0) {
+                    // it went up
+                    rise = delta / previousPrice;
+                    // up to the ceiling
+                    if (rise > cap) {
+                        rise = cap;
+                    }
+                    // apply to the current price
+                    price = (rise + 1) * previousPrice;
+                } else {
+                    // it went down
+                    price = previousPrice;
+                }
+                newitem = {
+                    year: year,
+                    price: price
+                };
+            } else {
+                newitem = {
+                    price: price,
+                    year: year
+                };
+            }
+            memo.push(newitem);
+            return memo;
+        }, []);
     }
 };
 export { helpers };

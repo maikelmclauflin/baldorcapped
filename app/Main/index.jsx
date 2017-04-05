@@ -19,13 +19,15 @@ class Main extends React.Component {
     }
     componentWillMount() {
         helpers.getStocks().then((data) => {
-            const min = new Date('1997-01-01');
+            const min = new Date('1996-01-01');
             return helpers.filterStocks(data, min.toISOString());
         }).then((subset) => {
             const transformed = helpers.transformStocks(subset);
             this.setState({
                 data: transformed
             });
+        }).catch(function (e) {
+            console.log(e);
         });
     }
     updateYear(years) {
@@ -54,6 +56,8 @@ class Main extends React.Component {
     }
     render() {
         const data = this.state.data;
+        const subset = this.subsetData(data);
+        const capped = helpers.generateCappedPoints(subset, this.state.cap);
     	return (
     	<div>
             <Slider
@@ -68,7 +72,8 @@ class Main extends React.Component {
                 value={this.state.years}
                 onChange={(e) => this.updateYear(e)}/>
             <LineChart
-                data={this.subsetData(data)} />
+                snpdata={subset}
+                capdata={capped} />
     	</div>);
     }
 }
