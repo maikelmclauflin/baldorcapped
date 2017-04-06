@@ -47,7 +47,7 @@ class Stack extends React.Component {
             });
         });
         return (<div>
-            <span>Capped Funds outperformed {winning} times out of {blocks.length} for a total win rate of {(winning / blocks.length) * 100}%</span>
+            <span>Capped Funds outperformed the S&P {winning} times out of {blocks.length} for a total win rate of {(winning / blocks.length) * 100}%</span>
             <div className="stack-container">
             {blocks.map((block, index) => {
                 return <Row
