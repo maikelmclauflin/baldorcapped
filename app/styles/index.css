@@ -73,3 +73,6 @@ h1 {
     margin: 30px auto;
     width: 90%;
 }
+.form-group {
+    display: block;
+}

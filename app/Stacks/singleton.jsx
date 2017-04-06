@@ -18,13 +18,20 @@ class Stack extends React.Component {
         const data = this.props.data;
         const root = this.props.root;
         const offset = this.props.offset;
+        const lastOnly = this.props.lastOnly;
+        const firstOnly = this.props.firstOnly;
         data.forEach((first, i1, data) => {
             const root_first = root[i1];
-            data.slice(i1 + 1).forEach((last, i2) => {
+            if (firstOnly && i1) {
+                return;
+            }
+            data.slice(i1 + 1).forEach((last, i2, list) => {
                 const length = i2 + 1;
-                const root_last = root[i2];
+                const root_last = root[i1 + 1 + i2];
                 const root_delta = root_last.y - root_first.y;
-                console.log(offset);
+                if (lastOnly && last !== list[list.length - 1]) {
+                    return;
+                }
                 blocks.push({
                     length: length,
                     gains: last.y - first.y - root_delta,
@@ -38,7 +45,7 @@ class Stack extends React.Component {
                 return <Row
                     length={block.length}
                     offset={block.offset}
-                    positive={block.gains > 0}
+                    positive={block.gains >= 0}
                     key={index} />
             })}
             </div>
