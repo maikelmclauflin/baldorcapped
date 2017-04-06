@@ -7,9 +7,14 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
 #app {
-    min-height: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.content-wrapper {
+    overflow: hidden;
 }
 .chart-container {
     height: 250px;
@@ -48,4 +53,23 @@ h1 {
 .year-range {
     width: 90%;
     margin: 0 auto;
+}
+.stacked-row {
+    height: 5px;
+    width: 100%;
+}
+.stacked-row:after {
+    height: 100%;
+    display: block;
+    content: '';
+}
+.stacked-row.negative:after {
+    background-color: red;
+}
+.stacked-row.positive:after {
+    background-color: green;
+}
+.stack-container {
+    margin: 30px auto;
+    width: 90%;
 }

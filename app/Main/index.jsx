@@ -3,11 +3,12 @@
 // who is this being created for / what is the user's needs
 // are 1 year blocks / intervals ok
 // is a loading state necessary while data is being fetched
-// where should data come from? i found something could work
+// where should data come from? i found something could work for yearly data
 import React from 'react';
 import Slider, { Range } from 'rc-slider';
 import { helpers } from '../helpers/index.jsx';
 import LineChart from '../LineChart/index.jsx';
+import Stacks from '../Stacks/index.jsx';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const TooltipSlider = createSliderWithTooltip(Slider);
@@ -92,6 +93,12 @@ class Main extends React.Component {
             </div>
             <div
                 className="container">
+                <Stacks
+                    offset={this.minYear() - this.state.minYear}
+                    root={helpers.transformToStackData(snpData)}
+                    sets={[
+                        helpers.transformToStackData(capData)
+                    ]} />
             </div>
     	</div>);
     }

@@ -1,6 +1,6 @@
 ## Bald or Capped
 
-to install simply open ```public/index.html```
+to install simply open ```docs/index.html```
 
 to contribute run
 

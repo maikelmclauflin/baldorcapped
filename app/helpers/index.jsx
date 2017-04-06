@@ -1,11 +1,13 @@
 import axios from 'axios';
 const jsonurl = 'http://data.okfn.org/data/core/s-and-p-500/r/data.json';
+const TWENTY = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 const helpers = {
+    TWENTY: TWENTY,
     getStocks() {
-        return axios.get(jsonurl).then(function (res) {
+        return axios.get(jsonurl).then((res) => {
             return res.data;
-        }).catch(function () {
-            return [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19, 20].reduce(function (memo, add) {
+        }).catch(() => {
+            return TWENTY.reduce((memo, add) => {
                 memo.push({
                     Date: (1996 + add) + '-01-01'
                 });
@@ -65,6 +67,15 @@ const helpers = {
             memo.push(newitem);
             return memo;
         }, []);
+    },
+    transformToStackData(data) {
+        var first = data[0];
+        return data.map(function (point) {
+            return {
+                y: point.price,
+                x: point.year - first.year
+            };
+        });
     }
 };
 export { helpers };
